@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "530964815896",
+    "firebase_url": "https://yoseptalk-657da.firebaseio.com",
+    "project_id": "yoseptalk-657da",
+    "storage_bucket": "yoseptalk-657da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530964815896:android:3a103aed620107d0",
+        "android_client_info": {
+          "package_name": "yoggaebi.yoseb.yoseptalk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "530964815896-makaeda304sga7efvhg0psf24v0uv331.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "yoggaebi.yoseb.yoseptalk",
+            "certificate_hash": "6c70e716efa0db6c97e8921c6a17d1592d764c8e"
+          }
+        },
+        {
+          "client_id": "530964815896-74d0ahilc52797fgk429069l5quglmba.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7yrzECyvD-16gG5yzkQ8w7jAnRvo7T7s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "530964815896-74d0ahilc52797fgk429069l5quglmba.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
