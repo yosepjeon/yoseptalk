@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="@drawable/login"
-    tools:context="yoggaebi.yoseb.yoseptalk.LoginActivity">
-
+    tools:context=".GoogleLoginActivity">
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -28,11 +26,11 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/google_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="@string/hint_email"
+                android:hint="@string/hint_google_email"
                 android:inputType="textEmailAddress"
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/white" />
@@ -43,7 +41,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/google_password"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -56,7 +54,7 @@
         <!-- Login Button -->
 
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_google_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
@@ -64,20 +62,9 @@
             android:text="@string/btn_login"
             android:textColor="@android:color/black" />
 
-        <Button
-            android:id="@+id/btn_google_login"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:background="@null"
-            android:text="@string/btn_google_to_login"
-            android:textAllCaps="false"
-            android:textColor="#5a60e7"
-            android:textSize="18dp"
-            android:textStyle="bold"/>
 
         <Button
-            android:id="@+id/btn_reset_password"
+            android:id="@+id/btn_google_reset_password"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
@@ -89,12 +76,12 @@
             android:textStyle="bold"/>
 
         <Button
-            android:id="@+id/btn_signup"
+            android:id="@+id/btn_back_to_login"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:background="@null"
-            android:text="@string/btn_link_to_register"
+            android:text="@string/btn_back_to_login"
             android:textAllCaps="false"
             android:textColor="#ee134b"
             android:textSize="18dp"
@@ -102,10 +89,11 @@
     </LinearLayout>
 
     <ProgressBar
-        android:id="@+id/login_progressBar"
+        android:id="@+id/google_login_progressBar"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_gravity="center|bottom"
         android:layout_marginBottom="20dp"
         android:visibility="gone" />
-</android.support.design.widget.CoordinatorLayout>
+
+</android.support.constraint.ConstraintLayout>

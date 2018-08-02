@@ -1,9 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/activity_chat_room"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg2"
     tools:context=".ChatRoomActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_height="wrap_content"
+            android:entries="@array/contents_array"
+            android:layout_width="120dp">
+        </Spinner>
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_height="wrap_content"
+            android:entries="@array/department_array"
+            android:layout_width="120dp">
+        </Spinner>
+
+        <ImageButton
+            android:id="@+id/userButton"
+            android:background="@drawable/users"
+            android:onClick="pressUserButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:background="@drawable/plus"
+            android:onClick="pressmakeRoom"/>
+
+        <ImageButton
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:background="@drawable/delete"
+            android:onClick="pressDeleteButton"/>
+
+        <ImageButton
+            android:id="@+id/enter"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:background="@drawable/enter"
+            android:onClick="pressEnterButton"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:background="@drawable/setting"
+            android:onClick="pressSettingButton"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="지명 입력 : "
+            android:padding="5dp"
+            android:id="@+id/textView" />
+
+        <EditText
+            android:layout_width="228dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText"
+            android:padding="1dp"
+            android:hint="ex) 명지대학교 자연캠퍼스" />
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/search"
+            android:onClick="pressMapButton" />
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView"
+        android:choiceMode="singleChoice">
+    </ListView>
+
+</LinearLayout>

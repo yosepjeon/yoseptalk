@@ -95,7 +95,7 @@ public class SignupActivity extends AppCompatActivity {
                 }
 
                 progressBar.setVisibility(View.VISIBLE);
-                auth.createUserWithEmailAndPassword(email,password) //이메일과 비밀번호를 받아 회원가입 실행
+                auth.createUserWithEmailAndPassword( email,password) //이메일과 비밀번호를 받아 회원가입 실행
                 .addOnCompleteListener(SignupActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -106,8 +106,8 @@ public class SignupActivity extends AppCompatActivity {
                         }else{ //성공했을 경우 처리
                             String name = FirebaseAuth.getInstance().getCurrentUser().getEmail();
                             Toast.makeText(SignupActivity.this, name + "님" + " 환영합니다!",Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(SignupActivity.this, ChatRoomActivity.class);
-                            startActivity(intent);
+                            //Intent intent = new Intent(SignupActivity.this, ChatRoomActivity.class);
+                            //startActivity(intent);
                             finish();
                         }
                     }
@@ -130,6 +130,12 @@ public class SignupActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
 }
