@@ -9,7 +9,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class GoogleLoginActivity extends AppCompatActivity {
@@ -49,6 +51,13 @@ public class GoogleLoginActivity extends AppCompatActivity {
         btnLogin = (Button) findViewById(R.id.btn_google_login);
         btnBack = (Button) findViewById(R.id.btn_back_to_login);
         btnReset = (Button) findViewById(R.id.btn_reset_password);
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
 
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override

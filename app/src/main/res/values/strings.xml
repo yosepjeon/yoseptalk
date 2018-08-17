@@ -71,4 +71,11 @@
     </string-array>
     <string name="title_activity_maps">Map</string>
 
+    <!--Google login관련-->
+    <string name="google_title_text">Google Sign In</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="signed_out">Signed Out</string>
+    <string name="desc_firebase_lockup">Firebase logo and name</string>
+
 </resources>

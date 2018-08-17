@@ -13,12 +13,16 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class LoginActivity extends AppCompatActivity {
+import java.util.Collections;
+
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+    private static final int RC_SIGN_IN = 9001;
     private String email = "";
     private String password = "";
 
@@ -50,6 +54,10 @@ public class LoginActivity extends AppCompatActivity {
         btnReset = (Button) findViewById(R.id.btn_reset_password);
 
         //auth = FirebaseAuth.getInstance();
+
+        findViewById(R.id.btn_google_login).setOnClickListener(this);
+
+        btnGoogleLogin.setVisibility(View.VISIBLE);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,12 +104,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btnGoogleLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, GoogleLoginActivity.class));
-            }
-        });
+//        btnGoogleLogin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(LoginActivity.this, GoogleLoginActivity.class));
+//            }
+//        });
 
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +124,21 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
             }
         });
+    }
+//
+//    .setAvailableProviders(Collections.singletonList(
+//            new AuthUI.IdpConfig.EmailBuilder().build()))
+    private void startSignIn() {
+        // Build FirebaseUI sign in intent. For documentation on this operation and all
+        // possible customization see: https://github.com/firebase/firebaseui-android
+        Intent intent = AuthUI.getInstance().createSignInIntentBuilder()
+                .setIsSmartLockEnabled(!BuildConfig.DEBUG)
+                .setAvailableProviders(Collections.singletonList(
+                        new AuthUI.IdpConfig.GoogleBuilder().build()))
+                .setLogo(R.mipmap.ic_launcher)
+                .build();
+
+        startActivityForResult(intent, RC_SIGN_IN);
     }
 
     @Override
@@ -143,4 +166,31 @@ public class LoginActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.btn_google_login:
+                System.out.println("startSignIn");
+                startSignIn();
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RC_SIGN_IN) {
+            if (resultCode == RESULT_OK) {
+                // Sign in succeeded
+                Intent intent = new Intent(LoginActivity.this, ChatRoomActivity.class);
+                startActivity(intent);
+                finish();
+            } else {
+                // Sign in failed
+                Toast.makeText(this, "Sign In Failed", Toast.LENGTH_SHORT).show();
+                //updateUI(null);
+            }
+        }
+    }
 }
