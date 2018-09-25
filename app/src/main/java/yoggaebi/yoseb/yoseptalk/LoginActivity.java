@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (auth.getCurrentUser() != null) {
             startActivity(new Intent(LoginActivity.this, ChatRoomActivity.class));
-            finish();
+            onPause();
         }
 
         setContentView(R.layout.activity_login);
@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         } else {
                             Intent intent = new Intent(LoginActivity.this, ChatRoomActivity.class);
                             startActivity(intent);
-                            finish();
+                            onPause();
                         }
                     }
                 });
@@ -154,6 +154,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onPause() {
         super.onPause();
+        finish();
     }
 
     @Override

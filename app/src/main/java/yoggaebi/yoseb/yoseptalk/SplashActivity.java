@@ -72,15 +72,27 @@ public class SplashActivity extends AppCompatActivity {
             builder.setMessage(splash_message).setPositiveButton("확인", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    finish();
+                    onPause();
                 }
             });
 
             builder.create().show();
         }else{
             startActivity(new Intent(this,LoginActivity.class));
-            finish();
+            onPause();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
 }
