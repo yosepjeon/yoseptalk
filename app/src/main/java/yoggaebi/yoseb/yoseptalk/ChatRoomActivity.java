@@ -1,12 +1,16 @@
 package yoggaebi.yoseb.yoseptalk;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -45,6 +49,9 @@ public class ChatRoomActivity extends AppCompatActivity {
     private ListView chatRoomList;
     private ListView communityList;
 
+    private LinearLayout linearLayout_basicList;
+    private LinearLayout linearLayout_chatList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +63,9 @@ public class ChatRoomActivity extends AppCompatActivity {
             startActivity(new Intent(ChatRoomActivity.this, LoginActivity.class));
             onPause();
         }
+
+        linearLayout_basicList = (LinearLayout) findViewById(R.id.ChatRoomActivity_LinearLayout_BasicList);
+        linearLayout_chatList = (LinearLayout) findViewById(R.id.ChatRoomActivity_LinearLayout_RoomList);
 
         affiliated_company_spinner = (Spinner) findViewById(R.id.ChatRoomActivity_Spinner_affiliated_company_spinner);
         department_spinner = (Spinner) findViewById(R.id.ChatRoomActivity_Spinner_department_spinner);
@@ -81,19 +91,17 @@ public class ChatRoomActivity extends AppCompatActivity {
         department_spinner.setVisibility(View.VISIBLE);
         find_spinner_button.setVisibility(View.VISIBLE);
 
-        viewPeopleListButton.setVisibility(View.VISIBLE);
-        viewChatRoomListButton.setVisibility(View.VISIBLE);
-        viewCommunityListButton.setVisibility(View.VISIBLE);
-        settingButton1.setVisibility(View.VISIBLE);
-
-        createRoomButton.setVisibility(View.GONE);
-        deleteRoomButton.setVisibility(View.GONE);
-        enterRoomButton.setVisibility(View.GONE);
-        settingButton2.setVisibility(View.GONE);
-
-//        peopleList.setVisibility(View.VISIBLE);
-//        chatRoomList.setVisibility(View.GONE);
-//        communityList.setVisibility(View.GONE);
+//        viewPeopleListButton.setVisibility(View.VISIBLE);
+//        viewChatRoomListButton.setVisibility(View.VISIBLE);
+//        viewCommunityListButton.setVisibility(View.VISIBLE);
+//        settingButton1.setVisibility(View.VISIBLE);
+//
+//        createRoomButton.setVisibility(View.VISIBLE);
+//        deleteRoomButton.setVisibility(View.VISIBLE);
+//        enterRoomButton.setVisibility(View.VISIBLE);
+//        settingButton2.setVisibility(View.VISIBLE);
+        linearLayout_basicList.setVisibility(View.VISIBLE);
+        linearLayout_chatList.setVisibility(View.GONE);
 
         getFragmentManager().beginTransaction().replace(R.id.ChatRoomActivity_Layout_viewList1,new PeopleFragment()).commit();
 
@@ -105,14 +113,16 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
     public void pressViewPeopleList(View view) {
+        Animation animation = new AlphaAnimation(0, 1);
+        animation.setDuration(1000);
+
         affiliated_company_spinner.setVisibility(View.VISIBLE);
         department_spinner.setVisibility(View.VISIBLE);
         find_spinner_button.setVisibility(View.VISIBLE);
 
-        createRoomButton.setVisibility(View.GONE);
-        deleteRoomButton.setVisibility(View.GONE);
-        enterRoomButton.setVisibility(View.GONE);
-        settingButton2.setVisibility(View.GONE);
+        linearLayout_chatList.setVisibility(View.GONE);
+        linearLayout_basicList.setVisibility(View.VISIBLE);
+        linearLayout_basicList.setAnimation(animation);
 
         getFragmentManager().beginTransaction().replace(R.id.ChatRoomActivity_Layout_viewList1,new PeopleFragment()).commit();
 
@@ -122,14 +132,16 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
     public void pressViewChatRoomList(View view) {
+        Animation animation = new AlphaAnimation(0, 1);
+        animation.setDuration(1000);
+
         affiliated_company_spinner.setVisibility(View.INVISIBLE);
         department_spinner.setVisibility(View.INVISIBLE);
         find_spinner_button.setVisibility(View.INVISIBLE);
 
-        createRoomButton.setVisibility(View.GONE);
-        deleteRoomButton.setVisibility(View.GONE);
-        enterRoomButton.setVisibility(View.GONE);
-        settingButton2.setVisibility(View.GONE);
+        linearLayout_chatList.setVisibility(View.GONE);
+        linearLayout_basicList.setVisibility(View.VISIBLE);
+        linearLayout_basicList.setAnimation(animation);
 
         getFragmentManager().beginTransaction().replace(R.id.ChatRoomActivity_Layout_viewList1,new ChatFragment()).commit();
 
@@ -139,25 +151,42 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
     public void pressViewCommunityList(View view) {
+        Animation animation = new AlphaAnimation(0, 1);
+        animation.setDuration(1000);
         affiliated_company_spinner.setVisibility(View.INVISIBLE);
         department_spinner.setVisibility(View.INVISIBLE);
         find_spinner_button.setVisibility(View.INVISIBLE);
 
-        createRoomButton.setVisibility(View.VISIBLE);
-        deleteRoomButton.setVisibility(View.VISIBLE);
-        enterRoomButton.setVisibility(View.VISIBLE);
-        settingButton2.setVisibility(View.VISIBLE);
+//        viewPeopleListButton.setVisibility(View.GONE);
+//        viewChatRoomListButton.setVisibility(View.GONE);
+//        viewCommunityListButton.setVisibility(View.GONE);
+//        settingButton1.setVisibility(View.GONE);
+//
+//        createRoomButton.setVisibility(View.VISIBLE);
+//        deleteRoomButton.setVisibility(View.VISIBLE);
+//        enterRoomButton.setVisibility(View.VISIBLE);
+//        settingButton2.setVisibility(View.VISIBLE);
+        linearLayout_chatList.setVisibility(View.VISIBLE);
+        linearLayout_chatList.setAnimation(animation);
+        linearLayout_basicList.setVisibility(View.GONE);
 
-//        peopleList.setVisibility(View.GONE);
-//        chatRoomList.setVisibility(View.GONE);
-//        communityList.setVisibility(View.VISIBLE);
+    }
+
+    public void pressBackButton(View view) {
+        Animation animation = new AlphaAnimation(0, 1);
+        animation.setDuration(1000);
+        linearLayout_chatList.setVisibility(View.GONE);
+        linearLayout_basicList.setVisibility(View.VISIBLE);
+        linearLayout_basicList.setAnimation(animation);
     }
 
     public void pressSettingButton1(View view) {
-//        Intent intent = new Intent(this, SettingActivity.class);
-//        startActivity(intent);
-//        onPause();
-        auth.signOut();
+        Intent intent = new Intent(this, SettingActivity1.class);
+
+        ActivityOptions activityOptions = ActivityOptions.makeCustomAnimation(view.getContext(),R.anim.fromright,R.anim.toleft);
+        startActivity(intent,activityOptions.toBundle());
+        onPause();
+        //auth.signOut();
     }
 
     @Override

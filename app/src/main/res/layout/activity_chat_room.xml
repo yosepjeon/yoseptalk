@@ -47,10 +47,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.2"
-        android:orientation="horizontal">
+        android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:id="@+id/ChatRoomActivity_LinearLayout_BasicList">
 
             <ImageButton
                 android:id="@+id/ChatRoomActivity_ImageButton_viewPeopleListButton"
@@ -81,28 +84,24 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
-                android:background="@drawable/chat_settings"
+                android:background="@drawable/information"
                 android:onClick="pressSettingButton1" />
 
         </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.2"
-        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:id="@+id/ChatRoomActivity_LinearLayout_RoomList">
 
             <ImageButton
                 android:id="@+id/ChatRoomActivity_ImageButton_createRoomButton"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
-                android:background="@drawable/create"
+                android:background="@drawable/createroom"
                 android:onClick="pressCreateRoom"/>
 
             <ImageButton
@@ -110,7 +109,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
-                android:background="@drawable/delete"
+                android:background="@drawable/deleteicon"
                 android:onClick="pressDeleteRoom"/>
 
             <ImageButton
@@ -118,7 +117,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
-                android:background="@drawable/enter"
+                android:background="@drawable/find"
                 android:onClick="pressEnterRoom"/>
 
             <ImageButton
@@ -126,11 +125,56 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
-                android:background="@drawable/setting"
-                android:onClick="pressSettingButton2"/>
+                android:background="@drawable/prev"
+                android:onClick="pressBackButton"/>
 
         </LinearLayout>
     </LinearLayout>
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1.2"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+
+            <!--<ImageButton-->
+                <!--android:id="@+id/ChatRoomActivity_ImageButton_createRoomButton"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="2.5"-->
+                <!--android:background="@drawable/createroom"-->
+                <!--android:onClick="pressCreateRoom"/>-->
+
+            <!--<ImageButton-->
+                <!--android:id="@+id/ChatRoomActivity_ImageButton_deleteRoomButton"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="2.5"-->
+                <!--android:background="@drawable/deleteicon"-->
+                <!--android:onClick="pressDeleteRoom"/>-->
+
+            <!--<ImageButton-->
+                <!--android:id="@+id/ChatRoomActivity_ImageButton_enterRoomButton"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="2.5"-->
+                <!--android:background="@drawable/find"-->
+                <!--android:onClick="pressEnterRoom"/>-->
+
+            <!--<ImageButton-->
+                <!--android:id="@+id/ChatRoomActivity_Button_settingButton2"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="2.5"-->
+                <!--android:background="@drawable/prev"-->
+                <!--android:onClick="pressSettingButton2"/>-->
+
+        <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
 
     <!--<LinearLayout-->
         <!--android:layout_width="match_parent"-->

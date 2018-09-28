@@ -1,4 +1,5 @@
 <resources>
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
     <string name="app_name">yoseptalk</string>
     <item name="darkorange" type="color">#FFFF8800</item>
     <string name="contents">Choose a contents</string>

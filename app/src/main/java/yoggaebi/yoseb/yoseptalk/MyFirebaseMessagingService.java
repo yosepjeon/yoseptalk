@@ -34,6 +34,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     private void sendNotification(String title, String text) {
+        String channelId = getString(R.string.default_notification_channel_id);
+
         Intent intent = new Intent(this, ChatRoomActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
@@ -55,11 +57,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         // Since android Oreo notification channel is needed.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("null",
+            NotificationChannel channel = new NotificationChannel(channelId,
                     "Channel human readable title",
                     NotificationManager.IMPORTANCE_DEFAULT);
             notificationManager.createNotificationChannel(channel);
         }
+
 
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
