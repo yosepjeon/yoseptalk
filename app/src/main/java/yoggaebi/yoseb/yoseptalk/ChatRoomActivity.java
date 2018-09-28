@@ -175,6 +175,10 @@ public class ChatRoomActivity extends AppCompatActivity {
     public void pressBackButton(View view) {
         Animation animation = new AlphaAnimation(0, 1);
         animation.setDuration(1000);
+
+        affiliated_company_spinner.setVisibility(View.VISIBLE);
+        department_spinner.setVisibility(View.VISIBLE);
+        find_spinner_button.setVisibility(View.VISIBLE);
         linearLayout_chatList.setVisibility(View.GONE);
         linearLayout_basicList.setVisibility(View.VISIBLE);
         linearLayout_basicList.setAnimation(animation);
