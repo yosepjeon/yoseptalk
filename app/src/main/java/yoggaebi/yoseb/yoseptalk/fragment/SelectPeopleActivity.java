@@ -1,21 +1,18 @@
 package yoggaebi.yoseb.yoseptalk.fragment;
 
 import android.app.ActivityOptions;
-import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
-import android.os.Build;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,32 +29,36 @@ import java.util.List;
 
 import yoggaebi.yoseb.yoseptalk.R;
 import yoggaebi.yoseb.yoseptalk.chat.MessageActivity;
+import yoggaebi.yoseb.yoseptalk.model.ChatModel;
 import yoggaebi.yoseb.yoseptalk.model.UserModel;
 
-public class PeopleFragment extends Fragment {
-    @Nullable
+public class SelectPeopleActivity extends AppCompatActivity {
+    ChatModel chatModel = new ChatModel();
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.people_fragment,container,false);
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.peoplefragment_recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
-        recyclerView.setAdapter(new PeopleFragmentRecyclerViewAdapter());
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_select_people);
 
-        FloatingActionButton floatingActionButton = (FloatingActionButton)view.findViewById(R.id.peoplefragment_floatingButton);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        RecyclerView recyclerView = findViewById(R.id.selectPeopleActivity_recyclerview);
+        recyclerView.setAdapter(new SelectPeopleFragmentRecyclerViewAdapter());
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Button button = findViewById(R.id.selectPeopleActivity_button);
+
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(view.getContext(),SelectPeopleActivity.class));
+                String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                chatModel.users.put(myUid,true);
+
+                FirebaseDatabase.getInstance().getReference().child("chatrooms").push().setValue(chatModel);
             }
         });
-
-        return view;
     }
 
-    class PeopleFragmentRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    class SelectPeopleFragmentRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         List<UserModel> userModels;
 
-        public PeopleFragmentRecyclerViewAdapter(){
+        public SelectPeopleFragmentRecyclerViewAdapter(){
             userModels = new ArrayList<>();
             final String myUid = FirebaseAuth.getInstance().getUid();
 
@@ -88,7 +89,7 @@ public class PeopleFragment extends Fragment {
         @NonNull
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_people_list,viewGroup,false);
+            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_people_list_select,viewGroup,false);
 
             return new CustomViewHolder(view);
         }
@@ -113,12 +114,22 @@ public class PeopleFragment extends Fragment {
                 }
             });
 
-            if (userModels.get(i).getComment() == null) {
-
-            } else{
+            if (userModels.get(i).getComment() != null) {
                 ((CustomViewHolder) viewHolder).textView_comment.setBackgroundResource(R.drawable.leftbubble);
                 ((CustomViewHolder) viewHolder).textView_comment.setText(userModels.get(i).getComment());
             }
+
+            ((CustomViewHolder) viewHolder).checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                    if(b) { // check된 상태
+                        chatModel.users.put(userModels.get(i).getUid(),true);
+                    }else { // check안된 상태
+                        chatModel.users.remove(userModels.get(i));
+                    }
+                }
+            });
         }
 
         @Override
@@ -130,12 +141,14 @@ public class PeopleFragment extends Fragment {
             public ImageView imageView;
             public TextView textView;
             public TextView textView_comment;
+            public CheckBox checkBox;
 
             public CustomViewHolder(View view) {
                 super(view);
                 imageView = (ImageView) view.findViewById(R.id.peopleitem_imageview);
                 textView = (TextView) view.findViewById(R.id.peopleitem_textview);
                 textView_comment = (TextView) view.findViewById(R.id.peopleitem_comment);
+                checkBox = (CheckBox) view.findViewById(R.id.peopleitem_checkbox);
             }
         }
     }

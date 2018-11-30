@@ -33,6 +33,7 @@ import java.util.TimeZone;
 import java.util.TreeMap;
 
 import yoggaebi.yoseb.yoseptalk.R;
+import yoggaebi.yoseb.yoseptalk.chat.GroupMessageActivity;
 import yoggaebi.yoseb.yoseptalk.chat.MessageActivity;
 import yoggaebi.yoseb.yoseptalk.model.ChatModel;
 import yoggaebi.yoseb.yoseptalk.model.UserModel;
@@ -56,6 +57,7 @@ public class ChatFragment extends Fragment {
     class ChatFragmentRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private List<ChatModel> chatModels = new ArrayList<>();
         private String uid;
+        private List<String> keys = new ArrayList<>();
         private List<String> destinationUsers = new ArrayList<>();
 
         public ChatFragmentRecyclerViewAdapter() {
@@ -67,6 +69,7 @@ public class ChatFragment extends Fragment {
                     chatModels.clear();
                     for(DataSnapshot item : dataSnapshot.getChildren()) {
                         chatModels.add(item.getValue(ChatModel.class));
+                        keys.add(item.getKey());
                     }
                     notifyDataSetChanged();
                 }
@@ -120,27 +123,34 @@ public class ChatFragment extends Fragment {
             //메세지를 내림 차순으로 정렬 후 마지막 메세지의 키값을 가져옴
             Map<String,ChatModel.Comment> commentMap = new TreeMap<>(Collections.<String>reverseOrder());
             commentMap.putAll(chatModels.get(i).comments);
-            String lastMessageKey = (String) commentMap.keySet().toArray()[0];
-            customViewHolder.textView_last_message.setText(chatModels.get(i).comments.get(lastMessageKey).message);
+            if(commentMap.keySet().toArray().length > 0) {
+                String lastMessageKey = (String) commentMap.keySet().toArray()[0]; //단체 채팅방에서 해당 코드에 대해서 에러가 발생하는데 이유는 단체채팅방에 메시지를 처음 만들면 메시지가 없는데 null값을 읽어들이려 하니까 에러 발생
+                customViewHolder.textView_last_message.setText(chatModels.get(i).comments.get(lastMessageKey).message);
 
+                simpleDateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
+
+                long unixTime = (long) chatModels.get(i).comments.get(lastMessageKey).timestamp;
+
+                Date date = new Date(unixTime);
+                customViewHolder.textView_last_time.setText(simpleDateFormat.format(date));
+            }
             customViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                Intent intent = null;
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), MessageActivity.class);
-                    intent.putExtra("destinationUid",destinationUsers.get(i));
+                    if(chatModels.get(i).users.size() > 2) {
+                        intent = new Intent(view.getContext(), GroupMessageActivity.class);
+                        intent.putExtra("destinationRoom",keys.get(i));
+                    }else {
+                        intent = new Intent(view.getContext(), MessageActivity.class);
+                        intent.putExtra("destinationUid", destinationUsers.get(i));
+                    }
 
-                    ActivityOptions activityOptions = ActivityOptions.makeCustomAnimation(view.getContext(),R.anim.fromright,R.anim.toleft);
+                    ActivityOptions activityOptions = ActivityOptions.makeCustomAnimation(view.getContext(), R.anim.fromright, R.anim.toleft);
 
-                    startActivity(intent,activityOptions.toBundle());
+                    startActivity(intent, activityOptions.toBundle());
                 }
             });
-
-            simpleDateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
-
-            long unixTime = (long)chatModels.get(i).comments.get(lastMessageKey).timestamp;
-
-            Date date = new Date(unixTime);
-            customViewHolder.textView_last_time.setText(simpleDateFormat.format(date));
         }
 
         @Override

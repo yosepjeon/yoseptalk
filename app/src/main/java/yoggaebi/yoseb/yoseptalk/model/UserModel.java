@@ -5,7 +5,15 @@ public class UserModel {
     private String userName;
     private String uid; //채팅하고싶은 사람에 대한 uid
     private String pushToken;
+    private String comment;
 
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getComment() {
+        return this.comment;
+    }
 
     public String getPushToken() {
         return pushToken;

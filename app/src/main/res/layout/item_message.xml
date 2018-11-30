@@ -32,11 +32,34 @@
             android:text="메세지"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <TextView
-            android:text="2011.11.11"
-            android:id="@+id/messageItem_textView_timestamp"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/messageItem_textView_readCounter_left"
+                android:text="1"
+                android:textColor="@android:color/holo_blue_bright"
+                android:layout_marginRight="9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:text="2011.11.11"
+                android:id="@+id/messageItem_textView_timestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/messageItem_textView_readCounter_right"
+                android:text="1"
+                android:textColor="@android:color/holo_blue_bright"
+                android:layout_marginRight="9dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"/>
+        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>

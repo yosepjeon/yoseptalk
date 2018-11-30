@@ -23,8 +23,9 @@ import java.util.Map;
 
 import yoggaebi.yoseb.yoseptalk.fragment.ChatFragment;
 import yoggaebi.yoseb.yoseptalk.fragment.PeopleFragment;
+import yoggaebi.yoseb.yoseptalk.model.UserModel;
 
-public class ChatRoomActivity extends AppCompatActivity {
+public class ChatRoomActivity extends AppCompatActivity{
     private FirebaseAuth auth;  //firebase의 로그인/회원가입을 위한 authentication(권한) 변수
 
     //
@@ -63,6 +64,8 @@ public class ChatRoomActivity extends AppCompatActivity {
             startActivity(new Intent(ChatRoomActivity.this, LoginActivity.class));
             onPause();
         }
+
+
 
         linearLayout_basicList = (LinearLayout) findViewById(R.id.ChatRoomActivity_LinearLayout_BasicList);
         linearLayout_chatList = (LinearLayout) findViewById(R.id.ChatRoomActivity_LinearLayout_RoomList);
@@ -126,9 +129,6 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         getFragmentManager().beginTransaction().replace(R.id.ChatRoomActivity_Layout_viewList1,new PeopleFragment()).commit();
 
-//        peopleList.setVisibility(View.VISIBLE);
-//        chatRoomList.setVisibility(View.GONE);
-//        communityList.setVisibility(View.GONE);
     }
 
     public void pressViewChatRoomList(View view) {
@@ -144,10 +144,6 @@ public class ChatRoomActivity extends AppCompatActivity {
         linearLayout_basicList.setAnimation(animation);
 
         getFragmentManager().beginTransaction().replace(R.id.ChatRoomActivity_Layout_viewList1,new ChatFragment()).commit();
-
-//        peopleList.setVisibility(View.GONE);
-//        chatRoomList.setVisibility(View.VISIBLE);
-//        communityList.setVisibility(View.GONE);
     }
 
     public void pressViewCommunityList(View view) {
@@ -157,15 +153,6 @@ public class ChatRoomActivity extends AppCompatActivity {
         department_spinner.setVisibility(View.INVISIBLE);
         find_spinner_button.setVisibility(View.INVISIBLE);
 
-//        viewPeopleListButton.setVisibility(View.GONE);
-//        viewChatRoomListButton.setVisibility(View.GONE);
-//        viewCommunityListButton.setVisibility(View.GONE);
-//        settingButton1.setVisibility(View.GONE);
-//
-//        createRoomButton.setVisibility(View.VISIBLE);
-//        deleteRoomButton.setVisibility(View.VISIBLE);
-//        enterRoomButton.setVisibility(View.VISIBLE);
-//        settingButton2.setVisibility(View.VISIBLE);
         linearLayout_chatList.setVisibility(View.VISIBLE);
         linearLayout_chatList.setAnimation(animation);
         linearLayout_basicList.setVisibility(View.GONE);

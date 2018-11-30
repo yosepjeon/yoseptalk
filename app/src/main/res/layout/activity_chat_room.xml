@@ -131,114 +131,12 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="1.2"-->
-        <!--android:orientation="horizontal">-->
-
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent">-->
-
-            <!--<ImageButton-->
-                <!--android:id="@+id/ChatRoomActivity_ImageButton_createRoomButton"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_weight="2.5"-->
-                <!--android:background="@drawable/createroom"-->
-                <!--android:onClick="pressCreateRoom"/>-->
-
-            <!--<ImageButton-->
-                <!--android:id="@+id/ChatRoomActivity_ImageButton_deleteRoomButton"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_weight="2.5"-->
-                <!--android:background="@drawable/deleteicon"-->
-                <!--android:onClick="pressDeleteRoom"/>-->
-
-            <!--<ImageButton-->
-                <!--android:id="@+id/ChatRoomActivity_ImageButton_enterRoomButton"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_weight="2.5"-->
-                <!--android:background="@drawable/find"-->
-                <!--android:onClick="pressEnterRoom"/>-->
-
-            <!--<ImageButton-->
-                <!--android:id="@+id/ChatRoomActivity_Button_settingButton2"-->
-                <!--android:layout_width="0dp"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_weight="2.5"-->
-                <!--android:background="@drawable/prev"-->
-                <!--android:onClick="pressSettingButton2"/>-->
-
-        <!--</LinearLayout>-->
-    <!--</LinearLayout>-->
-
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="1"-->
-        <!--android:orientation="horizontal">-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/ChatRoomActivity_TextView_hintGMS"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="2"-->
-            <!--android:padding="5dp"-->
-            <!--android:text="지명 입력 : " />-->
-
-        <!--<EditText-->
-            <!--android:id="@+id/ChatRoomActivity_EditText_inputGMS"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="5"-->
-            <!--android:hint="ex) 홍길동"-->
-            <!--android:padding="1dp" />-->
-
-        <!--<ImageButton-->
-            <!--android:id="@+id/ChatRoomActivity_ImageButton_findMap"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_weight="1"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:background="@drawable/search"-->
-            <!--android:onClick="pressMapButton" />-->
-
-    <!--</LinearLayout>-->
-
     <LinearLayout
         android:id="@+id/ChatRoomActivity_Layout_viewList1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
         android:orientation="vertical">
-
-        <!--<android.support.v7.widget.RecyclerView-->
-            <!--android:id="@+id/peopleitem_recyclerview"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent">-->
-
-        <!--</android.support.v7.widget.RecyclerView>-->
-
-        <!--<ListView-->
-            <!--android:id="@+id/ChatRoomActivity_ListView_peopleList"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:choiceMode="singleChoice"></ListView>-->
-
-        <!--<ListView-->
-            <!--android:id="@+id/ChatRoomActivity_ListView_chatRoomList"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:choiceMode="singleChoice"></ListView>-->
-
-        <!--<ListView-->
-            <!--android:id="@+id/ChatRoomActivity_ListView_communityList"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:choiceMode="singleChoice"></ListView>-->
 
     </LinearLayout>
 </LinearLayout>

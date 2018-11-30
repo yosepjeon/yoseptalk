@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".chat.MessageActivity"
-    android:id="@+id/linearlayout_activity_message">
+    tools:context=".chat.GroupMessageActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/MessageActivity_RecyclerView_chatContents"
+        android:id="@+id/groupMessageActivity_RecyclerView_chatContents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/MessageActivity_EditText_button"
@@ -21,24 +20,23 @@
     </android.support.v7.widget.RecyclerView>
 
     <EditText
-        android:layout_toLeftOf="@+id/MessageActivity_EditText_button"
+        android:layout_toLeftOf="@+id/groupMessageActivity_button"
         android:inputType="textMultiLine"
         android:minLines="1"
         android:maxLines="3"
-        android:id="@+id/MessageActivity_EditText_editText"
+        android:id="@+id/gourpMessageActivity_edittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"/>
 
     <Button
-        android:id="@+id/MessageActivity_EditText_button"
+        android:id="@+id/groupMessageActivity_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="보내기"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         />
-
 
 </RelativeLayout>

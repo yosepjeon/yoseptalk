@@ -81,4 +81,6 @@
     <string name="signed_out">Signed Out</string>
     <string name="desc_firebase_lockup">Firebase logo and name</string>
 
+    <color name="peoplecount_bg">#aaa99a</color>
+
 </resources>
